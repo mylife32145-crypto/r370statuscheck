@@ -290,53 +290,8 @@
     </div>
   </footer>
 
-  <!-- Notification Toast -->
-  <div id="copyToast" class="fixed bottom-6 right-6 hidden bg-slate-900 text-white text-xs px-4 py-2.5 rounded-lg shadow-xl border border-slate-700 z-50">
-    HTML Code copied to clipboard!
-  </div>
 
-  <script>
-    // Set dynamic year
-    document.getElementById('yearSpan').textContent = new Date().getFullYear();
 
-    // Helper to download current page as index.html
-    function downloadCurrentHtml() {
-      const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
-      const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8;' });
-      const url = URL.createObjectURL(blob);
-      const downloadLink = document.createElement('a');
-      downloadLink.href = url;
-      downloadLink.download = 'index.html';
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
-      URL.revokeObjectURL(url);
-    }
-
-    // Helper to copy code to clipboard using textarea fallback
-    function copyPageCode() {
-      const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
-      const textarea = document.createElement('textarea');
-      textarea.value = htmlContent;
-      textarea.style.position = 'fixed';
-      textarea.style.opacity = '0';
-      document.body.appendChild(textarea);
-      textarea.select();
-      try {
-        document.execCommand('copy');
-        const toast = document.getElementById('copyToast');
-        toast.classList.remove('hidden');
-        setTimeout(() => toast.classList.add('hidden'), 2500);
-      } catch (err) {
-        console.error('Copy failed', err);
-      }
-      document.body.removeChild(textarea);
-    }
-
-    // Bind event listeners
-    document.getElementById('downloadPageBtn').addEventListener('click', downloadCurrentHtml);
-    document.getElementById('downloadBannerBtn').addEventListener('click', downloadCurrentHtml);
-    document.getElementById('copyCodeBtn').addEventListener('click', copyPageCode);
-  </script>
+  
 </body>
 </html>
